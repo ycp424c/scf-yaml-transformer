@@ -1,0 +1,19 @@
+Resources:
+  alfredtest:
+    Type: TencentCloud::Serverless::Namespace
+    testversion:
+      Properties:
+        CodeUri: .
+        Description: helloworld 空白模板函数
+        Environment:
+          Variables: {}
+        Events: {}
+        Handler: index.main_handler
+        MemorySize: 128
+        Runtime: Python3.6
+        Timeout: 3
+        VpcConfig:
+          SubnetId: ''
+          VpcId: ''
+      Type: TencentCloud::Serverless::Function
+# For more information: https://github.com/serverless-components/tencent-scf/blob/v2/doc/configure.md
