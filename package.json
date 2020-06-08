@@ -1,6 +1,6 @@
 {
   "name": "scf-yaml-transformer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ycp424c/scf-yaml-transformer.git"
+  },
+  "bin": {
+    "scf-yaml-transformer": "./index.js"
   },
   "keywords": [],
   "author": "",

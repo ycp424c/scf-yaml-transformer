@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const yaml = require('js-yaml')
 const path = require('path')
 const fs = require('fs')
@@ -26,7 +28,11 @@ if(!fs.existsSync(from)){
 const yamlDocument = yaml.safeLoad(fs.readFileSync(from).toString())
 
 ;(async()=>{
-	console.log(require('./lib/index'))
-	const json = await transferYamlJson(yamlDocument,region,appId)
-	fs.writeFileSync(to,yaml.safeDump(json))
+	try{
+		const json = await transferYamlJson(yamlDocument,region,appId)
+		fs.writeFileSync(to,yaml.safeDump(json))
+		console.log('转换完成')
+	}catch(err){
+		console.error(err)
+	}
 })()
