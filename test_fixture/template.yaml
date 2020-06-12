@@ -1,19 +1,46 @@
 Resources:
-  alfredtest:
+  default:
     Type: TencentCloud::Serverless::Namespace
-    testversion:
+    hello:
+      Type: TencentCloud::Serverless::Function
       Properties:
-        CodeUri: .
-        Description: helloworld 空白模板函数
-        Environment:
-          Variables: {}
-        Events: {}
+        CodeUri: ./
+        Type: Event
+        Description: This is a template function
         Handler: index.main_handler
         MemorySize: 128
         Runtime: Python3.6
         Timeout: 3
-        VpcConfig:
-          SubnetId: ''
-          VpcId: ''
-      Type: TencentCloud::Serverless::Function
-# For more information: https://github.com/serverless-components/tencent-scf/blob/v2/doc/configure.md
+        Events:
+           timer:
+               Type: Timer
+               Properties:
+                   CronExpression: '*/5 * * * *'
+                   Enable: True        
+        #VpcConfig:
+        #    VpcId: 'vpc-qdqc5k2p'
+        #    SubnetId: 'subnet-pad6l61i'
+
+        #    cli-appid.cos.ap-beijing.myqcloud.com: # full bucket name
+        #        Type: COS
+        #        Properties:
+        #            Bucket: cli-appid.cos.ap-beijing.myqcloud.com
+        #            Filter:
+        #                Prefix: filterdir/
+        #                Suffix: .jpg
+        #            Events: cos:ObjectCreated:*
+        #            Enable: True
+        #    topic:            # topic name
+        #        Type: CMQ
+        #        Properties:
+        #            Name: qname
+        #    hello_world_apigw:  # ${FunctionName} + '_apigw'
+        #        Type: APIGW
+        #        Properties:
+        #            StageName: release
+        #            ServiceId: 
+        #            HttpMethod: ANY
+
+Globals:
+  Function:
+    Timeout: 10
